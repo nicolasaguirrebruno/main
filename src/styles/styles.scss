@@ -1,0 +1,21 @@
+// UI Settings.
+
+@import "./general/general";
+
+// Screens.
+
+// Components.
+@import "./components/chalesPage/footer";
+@import "./components/chalesPage/header";
+@import "./components/chalesPage/perks";
+@import "./components/chalesPage/questions";
+@import "./components/chalesPage/recommended";
+@import "./components/chalesPage/why";
+
+@import "./components/shop/categories/categories";
+@import "./components/shop/product/productList";
+
+@import "./components/aboutMe/headerAbout";
+@import "./components/aboutMe/presentation";
+
+@import "./components/navbar";

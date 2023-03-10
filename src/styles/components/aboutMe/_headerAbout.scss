@@ -1,0 +1,31 @@
+.headerAbout {
+  background-color: #804916;
+  height: 100vh;
+  padding: 10rem;
+  transform: translateY(-3%);
+
+  &__container {
+    width: 80%;
+    display: grid;
+    grid-template-rows: repeat(2, maxmin(30rem, 1fr));
+    margin-top: 4rem;
+    margin-left: 15rem;
+    row-gap: 5rem;
+  }
+  &__title {
+    font-size: 6.4rem;
+    color: var(--color-primary-light-4);
+    float: right;
+    align-self: start;
+    transform: translateX(-10%);
+  }
+
+  &__img {
+    width: 70%;
+    height: 60%;
+    margin-left: 2rem;
+    transform: translateY(-10%);
+    justify-self: end;
+    object-fit: cover;
+  }
+}
