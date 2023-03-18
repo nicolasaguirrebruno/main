@@ -1,6 +1,11 @@
-import React from "react";
+import { motion } from "framer-motion";
+import React, { useRef, useState } from "react";
+import { usePosition } from "../../../hooks/usePosition";
 
 export const Header = () => {
+  const [isSheepAnimated, setisSheepAnimated] = useState(false);
+  const sheep = useRef();
+  usePosition(sheep, 300, setisSheepAnimated);
   return (
     <header className="headerAbout">
       <div className="headerAbout__container">
@@ -9,7 +14,24 @@ export const Header = () => {
           proveniente de la Patagonia Argentina
         </h2>
 
-        <img className="headerAbout__img" src="./public/oveja.jpg" alt="" />
+        <motion.img
+          ref={sheep}
+          animate={{
+            y: 0,
+            opacity: 1,
+          }}
+          initial={{
+            opacity: 0.1,
+            y: 200,
+          }}
+          transition={{
+            type: "spring",
+            duration: 3,
+          }}
+          className="headerAbout__img"
+          src="./public/oveja.jpg"
+          alt=""
+        />
       </div>
     </header>
   );

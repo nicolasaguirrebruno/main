@@ -5,17 +5,20 @@ export const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__options">
-        <Link className="footer__link">
+        <Link to="politica-privacidad" className="footer__link">
           Politica de <br /> Privacidad
         </Link>
-        <Link className="footer__link">
+        <Link to="terminos-condiciones" className="footer__link">
           {" "}
           Terminos y <br /> condiciones
         </Link>
-        <Link className="footer__link">
+        <Link to="politicas-devolucion-reembolsos" className="footer__link">
           Politica de devolucion <br /> y reembolsos
         </Link>
-        <Link className="footer__link">
+        <Link
+          to="https://www.facebook.com/profile.php?id=100088197553150"
+          className="footer__link"
+        >
           {" "}
           Contactanos en <br /> nuestro Facebook
         </Link>

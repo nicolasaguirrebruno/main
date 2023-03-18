@@ -5,6 +5,9 @@
 // Screens.
 
 // Components.
+@import "./components/aboutMe/headerAbout";
+@import "./components/aboutMe/presentation";
+
 @import "./components/chalesPage/footer";
 @import "./components/chalesPage/header";
 @import "./components/chalesPage/perks";
@@ -12,10 +15,15 @@
 @import "./components/chalesPage/recommended";
 @import "./components/chalesPage/why";
 
-@import "./components/shop/categories/categories";
-@import "./components/shop/product/productList";
+@import "./components/login/login";
 
-@import "./components/aboutMe/headerAbout";
-@import "./components/aboutMe/presentation";
+@import "./components/modals/cart";
 
 @import "./components/navbar";
+
+@import "./components/shop/cart/cartPage";
+@import "./components/shop/categories/categories";
+@import "./components/shop/product/product";
+@import "./components/shop/product/productList";
+
+@import "./components/politics/_privacy";

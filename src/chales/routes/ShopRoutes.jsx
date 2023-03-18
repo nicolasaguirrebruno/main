@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import { ProductList } from "../components/shop";
+import { Cart, Product, ProductList } from "../components/shop";
 
 export const ShopRoutes = () => {
   return (
@@ -10,11 +10,15 @@ export const ShopRoutes = () => {
         <Route
           path="coleccion-vestir"
           element={<ProductList categoria="vestir" />}
-        ></Route>
+        />
         <Route
           path="coleccion-mantas"
           element={<ProductList categoria="mantas" />}
-        ></Route>
+        />
+
+        <Route path="coleccion-vestir/product/:name" element={<Product />} />
+        <Route path="coleccion-mantas/product/:name" element={<Product />} />
+        <Route path="carrito" element={<Cart />} />
       </Routes>
     </>
   );

@@ -1,9 +1,8 @@
 .header {
-  height: calc(100vh + 10vh);
-  background-color: var(--color-primary-light-4);
+  height: 100%;
+
   display: flex;
   flex-direction: column;
-  transform: translateY(-3%);
 
   &__images {
     display: grid;
@@ -22,8 +21,8 @@
       z-index: 2;
       padding: 1.5rem;
       animation: fotos 1.5s;
+      border-radius: 2px;
       background-color: white;
-      border: 1px solid rgba($color: #000000, $alpha: 0.5);
     }
     &--img-2 {
       width: 100%;
@@ -35,7 +34,7 @@
       animation: fotos;
       animation-duration: 2s;
       background-color: white;
-      border: 1px solid rgba($color: #000000, $alpha: 0.5);
+      border-radius: 2px;
     }
     &--img-3 {
       width: 100%;
@@ -47,7 +46,7 @@
       animation: fotos;
       animation-duration: 2.5s;
       background-color: white;
-      border: 1px solid rgba($color: #000000, $alpha: 0.5);
+      border-radius: 2px;
     }
 
     &--img-4 {
@@ -60,7 +59,7 @@
       animation: fotos;
       animation-duration: 3s;
       background-color: white;
-      border: 1px solid rgba($color: #000000, $alpha: 0.5);
+      border-radius: 2px;
     }
 
     &--img-5 {
@@ -73,7 +72,7 @@
       animation: fotos;
       animation-duration: 3.5s;
       background-color: white;
-      border: 1px solid rgba($color: #000000, $alpha: 0.5);
+      border-radius: 2px;
     }
   }
 
@@ -90,7 +89,7 @@
       letter-spacing: 1.5px;
 
       line-height: 1;
-      color: #555;
+      color: white;
     }
 
     &__paragraph {
@@ -122,4 +121,8 @@
     transform: translateY(0%);
     opacity: 100%;
   }
+}
+
+.chalesPage {
+  transform: translateY(-0.5%);
 }
