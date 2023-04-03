@@ -1,10 +1,15 @@
 import { IonIcon } from "@ionic/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import "animate.css";
-import { useAuthStore } from "../hooks";
+import { useAuthStore, useFavoriteStore } from "../hooks";
 import { Links } from "./components/Links";
+
 import "animate.css";
+import { UserModal } from "../chales/components/modals";
+import { onCloseUser, onOpenUser } from "../store";
+import { useModalStore } from "../hooks/useModalStore";
+import { useWishesStore } from "../hooks/useWishesStore";
 
 export const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -13,16 +18,35 @@ export const Navbar = () => {
     if (window.scrollY > 40) setNav(true);
     else setNav(false);
   };
-
+  const navigate = useNavigate();
+  const { startUserDisplay, startUserClose } = useModalStore();
+  const { startLoadingFavorites } = useFavoriteStore();
+  const { startLoadingWishes } = useWishesStore();
   const { status } = useAuthStore();
 
-  const handleNavigate = () => {
-    if (status == "not-authenticated") {
-      navigate("/auth/login");
+  const openLogin = () => {
+    if (status == "authenticated") {
+      startUserDisplay();
     } else {
-      console.log("You are authenticated");
+      navigate("/auth/login");
     }
   };
+
+  const openUser = () => {
+    if (status == "authenticated") startUserDisplay();
+  };
+
+  const closeUser = () => {
+    if (status == "authenticated") startUserClose();
+  };
+
+  useEffect(() => {
+    startLoadingFavorites();
+  }, [status]);
+
+  useEffect(() => {
+    startLoadingWishes();
+  }, [status]);
 
   window.addEventListener("scroll", activateNav);
 
@@ -50,11 +74,17 @@ export const Navbar = () => {
         <Links component={"ShoppingCart"} icon={"cart-outline"} />
         <Links component={"Wish"} icon={"heart-outline"} />
 
-        <a className="nav__anchors" onClick={handleNavigate}>
+        <a
+          className="nav__anchors"
+          onClick={() => openLogin()}
+          onMouseEnter={() => openUser()}
+          onMouseLeave={() => closeUser()}
+        >
           <IonIcon
             className="nav__icons--container--element"
             name="person-outline"
           />
+          <UserModal show={true} />
         </a>
       </div>
     </nav>

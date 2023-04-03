@@ -4,7 +4,7 @@ import { useWishesStore } from "../../../hooks/useWishesStore";
 import { CartList } from "../modals/components";
 
 export const Favorite = () => {
-  const { wish } = useWishesStore();
+  const { favorites } = useFavoriteStore();
   let total = 0;
   favorites.forEach((favorite) => (total += Number(favorite.precio)));
   return (

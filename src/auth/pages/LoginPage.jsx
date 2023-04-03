@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 import * as Yup from "yup";
 import { MyTextInput } from "../components/MyTextInput";
 import { useAuthStore } from "../../hooks";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { ChalesRoutes } from "../../chales/routes/ChalesRoutes";
 
 const loginFormFields = {
@@ -15,12 +15,20 @@ const loginFormFields = {
 export const LoginPage = () => {
   const { startLogin, status, errorMessage } = useAuthStore();
   const navigate = useNavigate();
+  const [showError, setShowError] = useState(false);
 
   useEffect(() => {
-    if (status == "authenticated") {
+    if (status === "authenticated") {
       navigate("/");
     }
-  }, [status]);
+  }, [status, navigate]);
+
+  useEffect(() => {
+    if (errorMessage !== undefined) {
+      setShowError(true);
+      console.log(errorMessage);
+    }
+  }, [errorMessage]);
 
   return (
     <section className="login">
@@ -64,10 +72,8 @@ export const LoginPage = () => {
                 Ingresar
               </button>
 
-              {errorMessage ? (
-                <span className="login__error">{errorMessage}</span>
-              ) : (
-                ""
+              {showError && (
+                <span className="login__error"> {errorMessage}</span>
               )}
 
               <button
@@ -77,6 +83,10 @@ export const LoginPage = () => {
               >
                 Limpiar campos
               </button>
+
+              <Link to="/auth/register" className="login__link">
+                No tengo cuenta
+              </Link>
             </Form>
           )}
         </Formik>

@@ -18,6 +18,7 @@
 @import "./components/login/login";
 
 @import "./components/modals/cart";
+@import "./components/modals/edit";
 
 @import "./components/navbar";
 
@@ -27,3 +28,6 @@
 @import "./components/shop/product/productList";
 
 @import "./components/politics/_privacy";
+
+@import "./components/Admin/adminLayout";
+@import "./components/Admin/products";

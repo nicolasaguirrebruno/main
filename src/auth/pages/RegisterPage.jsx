@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 import * as Yup from "yup";
 import { MyTextInput } from "../components/MyTextInput";
+import { useAuthStore } from "../../hooks/useAuthStore";
 
 const registerFormFields = {
   registerFirstName: "",
@@ -13,6 +14,13 @@ const registerFormFields = {
 };
 
 export const RegisterPage = () => {
+  const [error, setError] = useState(false);
+  const { startRegister, errorMessage } = useAuthStore();
+
+  useEffect(() => {
+    if (errorMessage !== undefined) setError(true);
+  }, [errorMessage]);
+
   return (
     <section className="login">
       <div className="login__form">
@@ -22,16 +30,18 @@ export const RegisterPage = () => {
         <Formik
           initialValues={registerFormFields}
           onSubmit={(values) => {
-            console.log(values);
+            startRegister({
+              name: values.registerFirstName,
+              email: values.registerEmail,
+              password: values.registerPassword,
+            });
           }}
           validationSchema={Yup.object({
             registerFirstName: Yup.string()
               .max(15, "Debe de tener 15 caracteres o menos")
               .min(2, "Debe de tener al menos 2 caracteres")
               .required("El campo nombre es obligatorio"),
-            registerLastName: Yup.string()
-              .max(10, "Debe de tener 10 caracteres o menos")
-              .required("El campo apellido es obligatorio"),
+
             registerEmail: Yup.string()
               .email("El formato del mail no es valido")
               .required("El campo email es obligatorio"),
@@ -39,22 +49,21 @@ export const RegisterPage = () => {
               .required("El campo contraseña es obligatorio")
               .min(6, "Minimo 6 letras"),
             registerPassword2: Yup.string()
-              .oneOf([Yup.ref("password")], "Las contraseñas no coinciden")
+              .oneOf(
+                [Yup.ref("registerPassword")],
+                "Las contraseñas no coinciden"
+              )
               .required("Este campo es obligatoro"),
           })}
         >
           {({ handleReset }) => (
             <Form>
               <MyTextInput
-                placeholder="Juan"
+                placeholder="Juan Perez"
                 label="Nombre"
                 name="registerFirstName"
               />
-              <MyTextInput
-                placeholder="Perez"
-                label="Apellido"
-                name="registerLastName"
-              />
+
               <MyTextInput
                 placeholder="juanperez@gmail.com"
                 label="Email"
@@ -86,6 +95,8 @@ export const RegisterPage = () => {
               >
                 Limpiar campos
               </button>
+
+              {error && <span className="login__error"> {errorMessage}</span>}
             </Form>
           )}
         </Formik>

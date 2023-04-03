@@ -1,5 +1,5 @@
 import { IonIcon } from "@ionic/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../../hooks";
 import { useWishesStore } from "../../../hooks/useWishesStore";
@@ -11,11 +11,19 @@ export const LikeButton = ({ product }) => {
 
   const navigate = useNavigate();
 
-  const { id, nombre, image, precio, categoria } = product;
+  const { nombre, descripcion, caracteristicas, image, precio, categoria } =
+    product;
 
   const handleCart = () => {
     if (status == "authenticated") {
-      startAddingWishes({ id, nombre, categoria, precio, image });
+      startAddingWishes({
+        nombre,
+        categoria,
+        caracteristicas,
+        descripcion,
+        precio,
+        image,
+      });
     } else {
       navigate("/auth/login");
     }
@@ -26,7 +34,6 @@ export const LikeButton = ({ product }) => {
   };
   return (
     <div>
-      {" "}
       {wishes.find((wish) => wish.id == product.id) ? (
         <IonIcon className="liked" onClick={handleRemove} name="heart" />
       ) : (

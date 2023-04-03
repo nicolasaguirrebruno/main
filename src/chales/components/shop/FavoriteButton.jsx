@@ -9,18 +9,30 @@ export const FavoriteButton = ({ product }) => {
 
   const navigate = useNavigate();
 
-  const { id, nombre, image, precio, categoria } = product;
+  const { id, nombre, image, caracteristicas, precio, categoria, descripcion } =
+    product;
 
+  const favoriteId = id.toString();
   const handleCart = () => {
     if (status == "authenticated") {
-      startAdding({ id, nombre, categoria, precio, image });
+      console.log(favoriteId, id);
+      startAdding({
+        id: favoriteId,
+        nombre,
+        categoria,
+        caracteristicas,
+        descripcion,
+        precio,
+        image,
+      });
     } else {
       navigate("/auth/login");
     }
   };
 
   const handleRemove = () => {
-    startDeleting({ id });
+    console.log(favoriteId);
+    startDeleting({ id: favoriteId });
   };
   return (
     <div>

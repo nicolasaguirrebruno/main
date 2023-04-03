@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFavoriteStore } from "../../../hooks";
 import { CartList, Text } from "./components";
 
 export const ShoppingCart = ({ show }) => {
-  const { favorites } = useFavoriteStore();
+  const { favorites, startLoadingFavorites } = useFavoriteStore();
 
   const navigate = useNavigate();
 

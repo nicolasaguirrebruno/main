@@ -1,12 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Password } from "phosphor-react";
 
-const userDatabase = [
-  {
-    email: "nicolasaguirrebruno01@gmail.com",
-    password: "123456",
-  },
-];
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -21,23 +15,20 @@ export const authSlice = createSlice({
       state.errorMessage = undefined;
     },
     onLogin: (state, { payload }) => {
-      state.status = userDatabase.map((user) => {
-        if (user.email == payload.email && user.password == payload.password)
-          return "authenticated";
-        else {
-          state.errorMessage = "No encontramos una cuenta con esa direccion";
-          return "not-authenticated";
-        }
-      });
-      state.user = userDatabase.map((user) => {
-        if (user.email == payload.email && user.password == payload.password)
-          return payload;
-        else {
-          state.errorMessage = "No encontramos una cuenta con esa direccion";
-        }
-      });
+      state.status = "authenticated";
+      state.user = payload;
+      state.errorMessage = undefined;
+    },
+    onLogout: (state, { payload }) => {
+      state.status = "not-authenticated";
+      state.user = {};
+      state.errorMessage = payload;
+    },
+    clearErrorMessage: (state) => {
+      state.errorMessage = undefined;
     },
   },
 });
 
-export const { onLogin } = authSlice.actions;
+export const { onChecking, onLogin, onLogout, clearErrorMessage } =
+  authSlice.actions;

@@ -23,7 +23,7 @@ export const chales = [
     pueblos Originarios.`,
     precio: `${Math.floor(Math.random() * (220 - 160 + 1) + 160)}`,
     image: [
-      "/src/img/poncho-azul.jpg",
+      "https://drive.google.com/uc?export=view&id=1TEdhGuwK87odXYxqwTqdo5IRS0kQ1SS5",
       "/src/img/poncho-azul-2.jpeg",
       "/src/img/poncho-azul-3.jpeg",
     ],
